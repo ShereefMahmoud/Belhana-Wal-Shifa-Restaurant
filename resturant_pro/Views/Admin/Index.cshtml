@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Admin";
+}
+<h2> Admin System </h2>
+<body style="background-image:url('../../images/666.jpg');">
+
+    <!-- Add User -->
+    <p>
+        @Html.ActionLink("Add New Employee", "Add", null, new { @class = "btn btn-info" })
+        <span class="glyphicon glyphicon-plus "></span>
+
+    </p>
+
+    <div class="form-group">
+        <input type="button" onclick="location.href='@Url.Action("Search_For_Employee", "Admin")'" value="Employees" class="btn btn-info" />
+    </div>
+
+
+    <!-- Search -->
+    <div class="form-group">
+        <input type="button" onclick="location.href='@Url.Action("Search", "Admin")'" value="Users" class="btn btn-info" />
+    </div>
+
+    <!-- Meal Controller -->
+    <div class="form-group">
+        <input type="button" onclick="location.href='@Url.Action("Index", "Meal")'" value="Meals" class="btn btn-info" />
+    </div>
+
+
+
+    <!-- Log out -->
+    <div class="form-group">
+        <input type="button" onclick="location.href='@Url.Action("LogOut", "Admin")'" value="LogOut" class="btn btn-primary" />
+    </div>
+
+
+
+
+</body>
