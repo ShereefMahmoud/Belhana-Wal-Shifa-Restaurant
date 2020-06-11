@@ -19,27 +19,67 @@ namespace resturant_pro.Controllers
         {
             return View();
         }
-       // Search
-        public ActionResult Search(string searching)
-        {
-            var Users = db.Users.Where(s => s.UserName.Contains(searching) || searching == null).ToList();
 
-            return View(Users);
+        // GET: Employee/Create
+        public ActionResult Create()
+        {
+            return View();
         }
-        // GET: Meal/Details/5
-        public ActionResult Details(int? id)
+
+        // POST: Employee/Create
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,name,email,phone,address")] Employee employee)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Employees.Add(employee);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(employee);
+        }
+
+        // Search Employee
+        public ActionResult Search_Emp(string searching)
+        {
+            var Employees = db.Employees.Where(s => s.name.Contains(searching) || searching == null).ToList();
+
+            return View(Employees);
+        }
+
+       
+
+        
+        // GET: Employee/Delete/5
+        public ActionResult Delete_Emp(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            User user = db.Users.Find(id);
-            if (user == null)
+            Employee Emp = db.Employees.Find(id);
+            if (Emp == null)
             {
                 return HttpNotFound();
             }
-            return View(user);
+            return View(Emp);
         }
+
+        // POST: Employee/Delete/5
+        [HttpPost, ActionName("Delete_Emp")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed_Emp(int id)
+        {
+            Employee Emp = db.Employees.Find(id);
+            db.Employees.Remove(Emp);
+            db.SaveChanges();
+            return RedirectToAction("Search_Emp");
+        }
+
 
         public ActionResult Edit(int? id)
         {
@@ -65,11 +105,11 @@ namespace resturant_pro.Controllers
             {
                 db.Entry(user).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(user);
         }
-        // GET: Employee/Delete/5
+        // GET: User/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -84,7 +124,7 @@ namespace resturant_pro.Controllers
             return View(user);
         }
 
-        // POST: Employee/Delete/5
+        // POST: User/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
@@ -92,7 +132,7 @@ namespace resturant_pro.Controllers
             User user = db.Users.Find(id);
             db.Users.Remove(user);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Search");
         }
 
         protected override void Dispose(bool disposing)
@@ -103,6 +143,31 @@ namespace resturant_pro.Controllers
             }
             base.Dispose(disposing);
         }
+
+        // Search
+        public ActionResult Search(string searching)
+        {
+            var Users = db.Users.Where(s => s.UserName.Contains(searching) || searching == null).ToList();
+
+            return View(Users);
+        }
+        // GET: User /Details/5
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            User user = db.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
+        }
+
+        
+
         // Log out
         public ActionResult LogOut()
         {

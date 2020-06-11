@@ -1,0 +1,81 @@
+﻿@model IEnumerable<resturant_pro.Models.Employee>
+
+@{
+    ViewBag.Title = "search";
+}
+
+<h2>Employees</h2>
+<body style="background-image:url('../../images/666.jpg');">
+
+
+
+
+
+    @using (Html.BeginForm("Search_Emp", "Admin", FormMethod.Get))
+    {
+
+        @Html.TextBox("Searching")<input type="submit" value="search" />
+
+    }
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.address)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.email)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.address)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit_Emp", new { id = item.id }, new { @class = "btn btn-success" })
+        </td>
+        <td>
+            @Html.ActionLink("Details", "Details_Emp", new { id = item.id }, new { @class = "btn btn-primary" })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete_Emp", new { id = item.id }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+        }
+
+    </table>
+
+
+    <!-- Back Home -->
+    <div class="form-group">
+        <input type="button" onclick="location.href='@Url.Action("Index", "Admin")'" value="Back Home" class="btn btn-info" />
+    </div>
+
+
+
+
+</body>
+

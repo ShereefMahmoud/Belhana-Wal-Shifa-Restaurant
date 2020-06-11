@@ -7,13 +7,13 @@
 
     <!-- Add User -->
     <p>
-        @Html.ActionLink("Add New Employee", "Add", null, new { @class = "btn btn-info" })
+        @Html.ActionLink("Add New Employee", "Create", null, new { @class = "btn btn-info" })
         <span class="glyphicon glyphicon-plus "></span>
 
     </p>
 
     <div class="form-group">
-        <input type="button" onclick="location.href='@Url.Action("Search_For_Employee", "Admin")'" value="Employees" class="btn btn-info" />
+        <input type="button" onclick="location.href='@Url.Action("Search_Emp", "Admin")'" value="Employees" class="btn btn-info" />
     </div>
 
 

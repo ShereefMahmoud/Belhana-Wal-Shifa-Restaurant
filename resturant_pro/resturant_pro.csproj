@@ -220,6 +220,11 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\Employee\Search.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\Admin\Create.cshtml" />
+    <Content Include="Views\Admin\Search_Emp.cshtml" />
+    <Content Include="Views\Admin\Details_Emp.cshtml" />
+    <Content Include="Views\Admin\Edit_Emp.cshtml" />
+    <Content Include="Views\Admin\Delete_Emp.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

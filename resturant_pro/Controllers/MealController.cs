@@ -22,6 +22,8 @@ namespace resturant_pro.Controllers
 
             return View(Meals);
         }
+       
+
 
         // GET: Meal/Details/5
         public ActionResult Details(int? id)
