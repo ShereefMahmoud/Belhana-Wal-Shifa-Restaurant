@@ -51,9 +51,49 @@ namespace resturant_pro.Controllers
             return View(Employees);
         }
 
-       
+        // GET: Employee /Details/5
+        public ActionResult Details_Emp(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee Emp = db.Employees.Find(id);
+            if (Emp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Emp);
+        }
 
-        
+        public ActionResult Edit_Emp(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Employee Emp = db.Employees.Find(id);
+            if (Emp == null)
+            {
+                return HttpNotFound();
+            }
+            return View(Emp);
+        }
+        // POST: Users/Edit/5
+        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit_Emp([Bind(Include = "id,name,address,phone,email")] Employee Emp)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(Emp).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Search_Emp");
+            }
+            return View(Emp);
+        }
         // GET: Employee/Delete/5
         public ActionResult Delete_Emp(int? id)
         {

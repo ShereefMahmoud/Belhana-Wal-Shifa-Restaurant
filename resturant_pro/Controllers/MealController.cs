@@ -22,7 +22,13 @@ namespace resturant_pro.Controllers
 
             return View(Meals);
         }
-       
+        // GET: Meal
+        public ActionResult Index_Emp(string searching)
+        {
+            var Meals = db.Meals.Where(s => s.Name.Contains(searching) || searching == null).ToList();
+
+            return View(Meals);
+        }
 
 
         // GET: Meal/Details/5
